@@ -5,9 +5,11 @@ transporte (pacote jar).
 
 O desenvolvimento baseado em TDD, ou seja, primeiro os testes depois a implementação. 
 
+Começando o projeto....
+
 - Requisitos Mínimos:
-JRE - Java 7
-# Usada: Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
+JRE - Java 8
+# Usada: Java(TM) SE Runtime Environment (build 1.8.0_45)
 
 - Build:
 $ mvn clean package

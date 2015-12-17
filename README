@@ -1,0 +1,36 @@
+Solução:
+
+Para a aplicação foi escolhido o springboot para desenvolver os serviços. Boa documentação, fácil utilização e fácil 
+transporte (pacote jar).
+
+O desenvolvimento baseado em TDD, ou seja, primeiro os testes depois a implementação. 
+
+- Requisitos Mínimos:
+JRE - Java 7
+# Usada: Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
+
+- Build:
+$ mvn clean package
+
+$ java -jar target/curiosity.jar 
+
+#### End-points #### 
+
+POST - localhost:8080/mission
+Raw Data Post example: 
+{"lowLandSize":{"xPosition": "5", "yPosition": "5"}, 
+"rovers": [
+    {
+      "xPosition": "1",
+      "yPosition": "2", 
+      "direction":"M",
+      "instructions": "LMLMLMLMM"
+    },
+    {
+      "xPosition": "3",
+      "yPosition": "3", 
+      "direction":"E",
+      "instructions": "MMRMMRMRRM"
+    }
+  ]
+}

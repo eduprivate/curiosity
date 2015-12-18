@@ -20,7 +20,7 @@ $ java -jar target/curiosity.jar
 
 POST - localhost:8080/mission
 Raw Data Post example: 
-{"lowLandSize":{"xPosition": "5", "yPosition": "5"}, 
+{"lowLand":{"xPosition": "5", "yPosition": "5"}, 
 "rovers": [
     {
       "xPosition": "1",

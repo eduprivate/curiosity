@@ -3,6 +3,7 @@ package br.com.curiosity.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.curiosity.Application;
+import br.com.curiosity.model.LowLand;
+import br.com.curiosity.model.Mission;
+import br.com.curiosity.model.Rover;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,19 +41,21 @@ public class MissionControllerTest {
 	@Test
 	public void executeMissionTest() throws JsonProcessingException {
 		// Give
-		Map<String, Object> requestMissionData = new HashMap<String, Object>();
-		requestMissionData.put("lowLandSize", "{\"xPosition\": \"5\", \"yPosition\": \"5\"}");
-		requestMissionData.put("rovers", "[{\"xPosition\":\"1\",\"yPosition\":\"2\",\"direction\":\"M\",\"instructions\":\"LMLMLMLMM\"},{\"xPosition\":\"3\",\"yPosition\":\"3\",\"direction\":\"E\",\"instructions\":\"MMRMMRMRRM\"}]}");
-
+		Rover rover1 = new Rover(1, 2, 'N', "LMLMLMLMM");
+		Rover rover2 = new Rover(3, 3, 'E', "MMRMMRMRRM");
+		List<Rover> rovers = new ArrayList<Rover>();
+		rovers.add(rover1);
+		rovers.add(rover2);
+		LowLand lowLand = new LowLand(5, 5);
+		Mission mission = new Mission(lowLand, rovers);
 		// When
 		@SuppressWarnings({ "unchecked" })
-		ResponseEntity<List> responseCreate = restTemplate.postForEntity(
-				"http://localhost:8080/mission/", requestMissionData,
-				List.class, Collections.EMPTY_MAP);
-
+		
+		List<Rover> responseMission = restTemplate.postForObject(
+				"http://localhost:8080/mission/", mission, List.class);
+		
 		// Then
-		assertNotNull(responseCreate);
-		assertEquals(HttpStatus.OK, responseCreate.getStatusCode());
+		assertNotNull(responseMission);
 
 	}
 

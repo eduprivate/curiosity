@@ -3,6 +3,7 @@ package br.com.curiosity.model;
 import java.util.List;
 
 import br.com.curiosity.exception.OutOfGroundException;
+import br.com.curiosity.exception.UnknownInstructionException;
 
 public class Mission {
 	private LowLand lowLand;
@@ -17,7 +18,7 @@ public class Mission {
 		this.rovers = rovers;
 	}
 	
-	public List<Rover> executeMission() throws OutOfGroundException{
+	public List<Rover> executeMission() throws OutOfGroundException, UnknownInstructionException{
 		for (Rover rover : rovers) {
 			rover.walk(lowLand.getGround());
 		}

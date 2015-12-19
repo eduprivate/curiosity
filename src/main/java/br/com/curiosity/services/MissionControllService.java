@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import br.com.curiosity.exception.OutOfGroundException;
+import br.com.curiosity.exception.UnknownInstructionException;
 import br.com.curiosity.model.Mission;
 import br.com.curiosity.model.Rover;
 
@@ -20,7 +21,9 @@ public class MissionControllService {
     		List<Rover> rovers = mission.executeMission();
 			return rovers;
 		} catch (OutOfGroundException e) {
-			logger.error("An error occurred while executing mission. Malfunction of the on-board computer!", e);
+			logger.error("An error occurred while executing mission. Review your mission!", e);
+		} catch (UnknownInstructionException e) {
+			logger.error("An error occurred while executing mission. Unknown Instruction!", e);
 		} 
     	return null; 
 	}

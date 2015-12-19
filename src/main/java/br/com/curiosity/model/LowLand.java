@@ -8,6 +8,7 @@ public class LowLand {
 	public LowLand() {
 	}
 	
+	
 	public LowLand(Integer xPosition, Integer yPosition) {
 		super();
 		this.xPosition = xPosition;

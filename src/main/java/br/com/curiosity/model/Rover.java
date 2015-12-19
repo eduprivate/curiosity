@@ -1,6 +1,7 @@
 package br.com.curiosity.model;
 
 import br.com.curiosity.exception.OutOfGroundException;
+import br.com.curiosity.exception.UnknownInstructionException;
 import br.com.curiosity.model.moviment.MovimentFactory;
 import br.com.curiosity.model.moviment.RoverBehaviour;
 
@@ -14,6 +15,7 @@ public class Rover {
 	public Rover() {
 	}
 
+	
 	public Rover(Integer xPosition, Integer yPosition, Character direction,
 			String instructions) {
 		super();
@@ -55,8 +57,8 @@ public class Rover {
 		this.instructions = instructions;
 	}
 
-	public void walk(int[][] ground) throws OutOfGroundException {
-		if (xPosition > ground.length && yPosition > ground[0].length)
+	public void walk(int[][] ground) throws OutOfGroundException, UnknownInstructionException {
+		if (xPosition > ground.length || yPosition > ground[0].length)
 			throw new OutOfGroundException("Review your mission. OutOfGround."
 					+ toString());
 

@@ -43,7 +43,6 @@ public class MissionControllerTest {
 		Mission mission = new Mission(5, 5, rovers);
 		// When
 		@SuppressWarnings({ "unchecked" })
-		
 		List<Rover> responseMission = restTemplate.postForObject(
 				"http://localhost:8080/mission/", mission, List.class);
 		
@@ -62,7 +61,6 @@ public class MissionControllerTest {
 		Mission mission = new Mission(5, 5, rovers);
 		// When
 		@SuppressWarnings({ "unchecked" })
-		
 		List<Rover> responseMission = restTemplate.postForObject(
 				"http://localhost:8080/mission/", mission, List.class);
 		

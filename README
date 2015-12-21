@@ -9,6 +9,8 @@ Baseado em REST. A Aplicação recebe os dados do terreno e das sondas (Rovers a
 e das sondas. Cada Sonda interpreta suas instruções e as executa no terreno conforme as regras. No final é retornado a lista 
 das sondas em formato JSON com suas novas posições.
 
+As classes Mission e Rover estão desnecessáriamente com getters e setters. Estou usando o RestTemplate nos testes e me durantes
+os testes 
 
 - Requisitos Mínimos:
 JRE - Java 8
@@ -21,7 +23,7 @@ $ java -jar target/curiosity.jar
 
 #### End-points #### 
 
-POST - localhost:8080/mission
+POST - http://localhost:8080/mission
 Raw Data Post example: 
 {
 	"xPosition": "10",

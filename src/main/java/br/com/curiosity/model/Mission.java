@@ -9,12 +9,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Mission {
+	private Integer xPosition;
+	private Integer yPosition;
 	private int[][] ground;
 	private List<Rover> rovers;
+	
+	public Mission() {
+	}
 	
 	@JsonCreator
 	public Mission(@JsonProperty("xPosition") Integer xPosition, @JsonProperty("yPosition") Integer yPosition, 
 			@JsonProperty("rovers") List<Rover> rovers) {
+		this.xPosition = xPosition;
+		this.yPosition = yPosition;
 		this.ground = new int[xPosition][yPosition];
 		this.rovers = rovers;
 	}
@@ -25,5 +32,21 @@ public class Mission {
 		}
 		return rovers;
 	}
-	
+
+	public Integer getxPosition() {
+		return xPosition;
+	}
+
+	public Integer getyPosition() {
+		return yPosition;
+	}
+
+	public int[][] getGround() {
+		return ground;
+	}
+
+	public List<Rover> getRovers() {
+		return rovers;
+	}
+
 }

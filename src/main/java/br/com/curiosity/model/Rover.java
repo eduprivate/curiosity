@@ -68,7 +68,6 @@ public class Rover {
 
 	private void executeInstructions(int[][] ground,
 			char[] instructionsArray) throws UnknownInstructionException {
-		System.out.println(instructionsArray);
 		RoverBehaviour roverBehaviour;
 		for (int i = 0; i < instructionsArray.length; i++) {
 			

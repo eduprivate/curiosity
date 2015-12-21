@@ -31,7 +31,6 @@ public class RoverMovimentBehaviour implements RoverBehaviour {
 		markRoverPosition();
 	}
 	
-
 	private boolean canMoveToWest() {
 		return (rover.getxPosition()-1) >= 0 
 				&& verifyCollision(rover.getxPosition()-1, rover.getyPosition());

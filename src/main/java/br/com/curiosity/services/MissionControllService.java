@@ -1,5 +1,6 @@
 package br.com.curiosity.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -16,16 +17,16 @@ public class MissionControllService {
 	
 	private Logger logger = LogManager.getLogger(MissionControllService.class);
 	
-	public List<Rover> execute(Mission mission)  {
+	public List<Rover> executeMission(Mission mission)  {
+		List<Rover> rovers = new ArrayList<Rover>();
 		try {
-    		List<Rover> rovers = mission.executeMission();
-			return rovers;
+    		rovers = mission.executeMission();
 		} catch (OutOfGroundException e) {
 			logger.error("An error occurred while executing mission. Review your mission!", e);
 		} catch (UnknownInstructionException e) {
 			logger.error("An error occurred while executing mission. Unknown Instruction!", e);
 		} 
-    	return null; 
+    	return rovers; 
 	}
 
 }

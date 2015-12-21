@@ -20,7 +20,8 @@ public class MissionController {
 	
 	@RequestMapping(value="/mission", method = RequestMethod.POST )
     public @ResponseBody List<Rover> executeMission(@RequestBody Mission mission) {
-		return missionControllService.execute(mission);		
+		
+		return missionControllService.executeMission(mission);		
     }
 
 	

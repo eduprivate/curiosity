@@ -57,22 +57,35 @@ public class Rover {
 		this.instructions = instructions;
 	}
 
-	public void walk(int[][] ground) throws OutOfGroundException, UnknownInstructionException {
-		if (xPosition > ground.length || yPosition > ground[0].length)
-			throw new OutOfGroundException("Review your mission. OutOfGround."
-					+ toString());
+	public void executeMission(int[][] ground) throws OutOfGroundException, UnknownInstructionException {
+		
+		checkGroundLimits(ground);
+		char[] instructionsArray = readInstructions();
+		
+		executeInstructions(ground, instructionsArray);
+	}
 
-		char[] instructionsArray = readInstruction();
+
+	private void executeInstructions(int[][] ground,
+			char[] instructionsArray) throws UnknownInstructionException {
+		System.out.println(instructionsArray);
 		RoverBehaviour roverBehaviour;
 		for (int i = 0; i < instructionsArray.length; i++) {
-
+			
 			roverBehaviour = MovimentFactory.getRoverBehaviour(instructionsArray[i],
 					this, ground);
 			roverBehaviour.executeCommand();
 		}
 	}
 
-	private char[] readInstruction() {
+
+	private void checkGroundLimits(int[][] ground) throws OutOfGroundException {
+		if (xPosition > ground.length || yPosition > ground[0].length)
+			throw new OutOfGroundException("Review your mission. OutOfGround."
+					+ toString());
+	}
+
+	private char[] readInstructions() {
 		return instructions.toCharArray();
 	}
 

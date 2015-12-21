@@ -1,5 +1,6 @@
 package br.com.curiosity.controller;
 
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -15,8 +16,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.curiosity.Application;
-import br.com.curiosity.exception.OutOfGroundException;
-import br.com.curiosity.model.LowLand;
 import br.com.curiosity.model.Mission;
 import br.com.curiosity.model.Rover;
 
@@ -41,8 +40,7 @@ public class MissionControllerTest {
 		List<Rover> rovers = new ArrayList<Rover>();
 		rovers.add(rover1);
 		rovers.add(rover2);
-		LowLand lowLand = new LowLand(5, 5);
-		Mission mission = new Mission(lowLand, rovers);
+		Mission mission = new Mission(5, 5, rovers);
 		// When
 		@SuppressWarnings({ "unchecked" })
 		
@@ -61,8 +59,7 @@ public class MissionControllerTest {
 		List<Rover> rovers = new ArrayList<Rover>();
 		rovers.add(rover1);
 		rovers.add(rover2);
-		LowLand lowLand = new LowLand(5, 5);
-		Mission mission = new Mission(lowLand, rovers);
+		Mission mission = new Mission(5, 5, rovers);
 		// When
 		@SuppressWarnings({ "unchecked" })
 		
@@ -70,7 +67,7 @@ public class MissionControllerTest {
 				"http://localhost:8080/mission/", mission, List.class);
 		
 		// Then
-		assertNull(responseMission);
+		assertTrue(responseMission.size() == 0);
 	}
 
 }

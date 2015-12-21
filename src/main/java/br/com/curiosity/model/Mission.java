@@ -6,31 +6,51 @@ import br.com.curiosity.exception.OutOfGroundException;
 import br.com.curiosity.exception.UnknownInstructionException;
 
 public class Mission {
-	private LowLand lowLand;
+	private Integer xPosition;
+	private Integer yPosition;
+	private int[][] ground;
 	private List<Rover> rovers;
 
 	public Mission() {
 	}
 	
-	public Mission(LowLand lowLand, List<Rover> rovers) {
+	public Mission(Integer xPosition, Integer yPosition, List<Rover> rovers) {
 		super();
-		this.lowLand = lowLand;
+		this.ground = new int[xPosition][yPosition];
 		this.rovers = rovers;
 	}
 	
 	public List<Rover> executeMission() throws OutOfGroundException, UnknownInstructionException{
 		for (Rover rover : rovers) {
-			rover.walk(lowLand.getGround());
+			rover.executeMission(getGround());
 		}
 		return rovers;
 	}
 
-	public LowLand getLowLand() {
-		return lowLand;
+	public Integer getxPosition() {
+		return xPosition;
 	}
 
-	public void setLowLand(LowLand lowLand) {
-		this.lowLand = lowLand;
+	public void setxPosition(Integer xPosition) {
+		this.xPosition = xPosition;
+	}
+
+	public Integer getyPosition() {
+		return yPosition;
+	}
+
+	public void setyPosition(Integer yPosition) {
+		this.yPosition = yPosition;
+	}
+
+	public int[][] getGround() {
+		if (ground == null)
+			ground = new int[xPosition][yPosition];
+		return ground;
+	}
+
+	public void setGround(int[][] ground) {
+		this.ground = ground;
 	}
 
 	public List<Rover> getRovers() {

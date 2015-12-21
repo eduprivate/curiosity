@@ -3,6 +3,14 @@ package br.com.curiosity.model.moviment;
 import br.com.curiosity.model.Rover;
 
 public class RoverDirectionBehaviour implements RoverBehaviour {
+	
+	public static final char MOVE = 'M';
+	public static final char RIGHT = 'R';
+	public static final char LEFT = 'L';
+	public static final char NORTH = 'N';
+	public static final char WEST = 'W';
+	public static final char SOUTH = 'S';
+	public static final char EAST = 'E';
 
 	private Rover rover;
 	private char direction;
@@ -14,36 +22,40 @@ public class RoverDirectionBehaviour implements RoverBehaviour {
 
 	@Override
 	public void executeCommand() {
-		if ( direction == 'L') {
+		if ( direction == LEFT) {
 			switch (rover.getDirection()) {
-				case 'N':
-					rover.setDirection('W');
+				case NORTH:
+					changeRoverDirectionTo(WEST);
 					break;
-				case 'W':
-					rover.setDirection('S');
+				case WEST:
+					changeRoverDirectionTo(SOUTH);
 					break;
-				case 'S':
-					rover.setDirection('E');
+				case SOUTH:
+					changeRoverDirectionTo(EAST);
 					break;	
-				case 'E':
-					rover.setDirection('N');
+				case EAST:
+					changeRoverDirectionTo(NORTH);
 					break;	
 			}
 		} else {
 			switch (rover.getDirection()) {
-				case 'N':
-					rover.setDirection('E');
+				case NORTH:
+					changeRoverDirectionTo(EAST);
 					break;
-				case 'E':
-					rover.setDirection('S');
+				case EAST:
+					changeRoverDirectionTo(SOUTH);
 					break;
-				case 'S':
-					rover.setDirection('W');
+				case SOUTH:
+					changeRoverDirectionTo(WEST);
 					break;	
-				case 'W':
-					rover.setDirection('N');
+				case WEST:
+					changeRoverDirectionTo(NORTH);
 					break;	
 			}
 		}
+	}
+	
+	private void changeRoverDirectionTo(char direction) {
+		rover.setDirection(direction);
 	}
 }

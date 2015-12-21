@@ -9,8 +9,12 @@ Baseado em REST. A Aplicação recebe os dados do terreno e das sondas (Rovers a
 e das sondas. Cada Sonda interpreta suas instruções e as executa no terreno conforme as regras. No final é retornado a lista 
 das sondas em formato JSON com suas novas posições.
 
-As classes Mission e Rover estão desnecessáriamente com getters e setters. Estou usando o RestTemplate nos testes e me durantes
-os testes 
+As classes Mission e Rover estão desnecessariamente com getters e setters. Estou usando o RestTemplate nos testes e me durantes
+os testes de integração ele não consegue converter o converter o JSON para meu object. Não ocorre com a aplicação rodando 
+em modo normal. Vou investigar isso. Primeiro vez que me deparo com o problema. 
+
+Checagem de colisão: o ponto final de uma sonda é marcada e se a proxima sonda estiver para colidir o movimento é 
+cancelado (sai do fluxo) até a próxima instrução válida. 
 
 - Requisitos Mínimos:
 JRE - Java 8

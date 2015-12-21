@@ -29,6 +29,20 @@ public class RoverTest {
 		assertEquals("1 3 N", rover.toString());
 	}
 	
+	@Test
+	public void avoidCollisionTest() throws OutOfGroundException, UnknownInstructionException {
+		// Given
+		Rover rover1 = new Rover(1, 2, 'N', "LMLMLMLMM");
+		Rover rover2 = new Rover(1, 1, 'N', "MMMLMLMML");
+		
+		// When 
+		rover1.executeMission(ground);
+		rover2.executeMission(ground);
+		// Then 
+		assertEquals("1 3 N", rover1.toString());
+		assertEquals("0 0 E", rover2.toString());
+	}
+	
 	@Test(expected=OutOfGroundException.class)
 	public void walkOutOfBoundTest() throws OutOfGroundException, UnknownInstructionException {
 		// Given

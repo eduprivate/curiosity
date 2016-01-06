@@ -28,6 +28,7 @@ $ java -jar target/curiosity.jar
 # End-points  
 
 POST - http://localhost:8080/mission
+
 Raw Data Post example: 
 {
 	"xPosition": "10",

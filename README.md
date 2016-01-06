@@ -1,4 +1,4 @@
-Solução:
+#Solução
 
 Para a aplicação foi escolhido o springboot para desenvolver os serviços. Boa documentação, fácil utilização e fácil 
 transporte (pacote jar).
@@ -16,16 +16,16 @@ em modo normal. Vou investigar isso. Primeiro vez que me deparo com o problema.
 Checagem de colisão: o ponto final de uma sonda é marcada e se a proxima sonda estiver para colidir o movimento é 
 cancelado (sai do fluxo) até a próxima instrução válida. 
 
-- Requisitos Mínimos:
+# Requisitos Mínimos
 JRE - Java 8
-# Usada: Java(TM) SE Runtime Environment (build 1.8.0_45)
+- Usada: Java(TM) SE Runtime Environment (build 1.8.0_45)
 
-- Build:
+# Build:
 $ mvn clean package
 
 $ java -jar target/curiosity.jar 
 
-#### End-points #### 
+# End-points  
 
 POST - http://localhost:8080/mission
 Raw Data Post example: 

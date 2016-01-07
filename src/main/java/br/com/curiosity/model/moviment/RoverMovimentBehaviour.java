@@ -1,6 +1,6 @@
 package br.com.curiosity.model.moviment;
 
-import br.com.curiosity.model.Rover;
+import br.com.curiosity.entity.Rover;
 
 public class RoverMovimentBehaviour implements RoverBehaviour {
 

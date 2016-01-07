@@ -1,7 +1,7 @@
 package br.com.curiosity.model.moviment;
 
+import br.com.curiosity.entity.Rover;
 import br.com.curiosity.exception.UnknownInstructionException;
-import br.com.curiosity.model.Rover;
 
 public class MovimentFactory {
 	

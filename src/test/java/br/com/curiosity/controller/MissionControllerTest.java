@@ -16,8 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.curiosity.Application;
-import br.com.curiosity.model.Mission;
-import br.com.curiosity.model.Rover;
+import br.com.curiosity.entity.Mission;
+import br.com.curiosity.entity.Rover;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

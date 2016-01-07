@@ -1,16 +1,43 @@
-package br.com.curiosity.model;
+package br.com.curiosity.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import br.com.curiosity.exception.OutOfGroundException;
 import br.com.curiosity.exception.UnknownInstructionException;
 import br.com.curiosity.model.moviment.MovimentFactory;
 import br.com.curiosity.model.moviment.RoverBehaviour;
 
-public class Rover {
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
+@Entity
+public class Rover {
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	
+	@Column(name="xPosition")
 	private Integer xPosition;
+	
+	@Column(name="yPosition")
 	private Integer yPosition;
+	
+	@Column(name="direction")
 	private Character direction;
+	
+	@Column(name="instructions")
 	private String instructions;
+	
+	@ManyToOne
+	@JoinColumn(name="mission_id")
+	@JsonBackReference
+	private Mission mission;
 
 	public Rover() {
 	}
@@ -56,6 +83,14 @@ public class Rover {
 	public void setInstructions(String instructions) {
 		this.instructions = instructions;
 	}
+	
+	public void setMission(Mission mission) {
+		this.mission = mission;
+	}
+	
+	public Mission getMission() {
+		return mission;
+	}
 
 	public void executeMission(int[][] ground) throws OutOfGroundException, UnknownInstructionException {
 		
@@ -70,7 +105,6 @@ public class Rover {
 			char[] instructionsArray) throws UnknownInstructionException {
 		RoverBehaviour roverBehaviour;
 		for (int i = 0; i < instructionsArray.length; i++) {
-			
 			roverBehaviour = MovimentFactory.getRoverBehaviour(instructionsArray[i],
 					this, ground);
 			roverBehaviour.executeCommand();

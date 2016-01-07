@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.curiosity.entity.Rover;
 import br.com.curiosity.exception.UnknownInstructionException;
-import br.com.curiosity.model.Rover;
 
 public class MovimentFactoryTest {
 	

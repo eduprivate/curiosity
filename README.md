@@ -16,6 +16,11 @@ em modo normal. Vou investigar isso. Primeiro vez que me deparo com o problema.
 Checagem de colisão: o ponto final de uma sonda é marcada e se a proxima sonda estiver para colidir o movimento é 
 cancelado (sai do fluxo) até a próxima instrução válida. 
 
+As missões agora estão sendo persistidas em memória (com.h2database). Um problema legal que tive foi o relacionamento 
+@OneToMany e @ManyToOne entre Mission e os Rovers estava gerando um loop infinito (e consequentemente StackOverflowError)
+durante o parsing json do request. Para evitar isso estou usando as anotaçoes @JsonManagedReference e @JsonBackReference. 
+
+
 # Requisitos Mínimos
 JRE - Java 8
 - Usada: Java(TM) SE Runtime Environment (build 1.8.0_45)
@@ -28,7 +33,7 @@ $ java -jar target/curiosity.jar
 # Entry-points  
 
 POST - http://localhost:8080/mission
-
+Retorna lista dos rovers com informação das posições atuais
 Raw Data Post example: 
 {
 	"xPosition": "10",
@@ -45,3 +50,25 @@ Raw Data Post example:
 		"instructions": "MMRMMRMRRM"
 	}]
 }
+
+POST - http://localhost:8080/executemission
+Retorna informação da missão toda.
+Raw Data Post example: 
+{
+	"xPosition": "10",
+	"yPosition": "10",
+	"rovers": [{
+		"xPosition": "1",
+		"yPosition": "2",
+		"direction": "N",
+		"instructions": "LMLMLMLMM"
+	}, {
+		"xPosition": "3",
+		"yPosition": "3",
+		"direction": "E",
+		"instructions": "MMRMMRMRRM"
+	}]
+}
+
+GET - http://localhost:8080/mission/{missionId}
+Retorna informação da missão.

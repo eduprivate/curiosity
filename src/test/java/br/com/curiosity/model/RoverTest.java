@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.curiosity.entity.Rover;
 import br.com.curiosity.exception.OutOfGroundException;
 import br.com.curiosity.exception.UnknownInstructionException;
 

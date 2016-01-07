@@ -25,7 +25,7 @@ $ mvn clean package
 
 $ java -jar target/curiosity.jar 
 
-# End-points  
+# Entry-points  
 
 POST - http://localhost:8080/mission
 

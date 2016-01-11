@@ -55,6 +55,7 @@ public class RoverDirectionBehaviour  {
 	}
 	
 	private void changeRoverDirectionTo(char direction) {
+		System.out.println("Change direction to" + direction);
 		rover.setDirection(direction);
 	}
 }

@@ -30,8 +30,10 @@ public class InstructionReader {
         List<Instruction> instructions = new ArrayList<Instruction>();
 
         for(String instructionCharacter : commandCharactersFrom(instructionsString)) {
-        	Instruction instruction = findInstruction(instructionCharacter.toUpperCase());
-        	instructions.add(instruction);
+        	if (!instructionCharacter.isEmpty()){
+        		Instruction instruction = findInstruction(instructionCharacter.toUpperCase());
+        		instructions.add(instruction);
+        	}
         }
 
         return instructions;

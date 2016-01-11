@@ -55,21 +55,25 @@ public class RoverMovimentBehaviour {
 	}
 
 	private void moveToWest() {
+		System.out.println("Move to West");
 		unmarkRoverPosition(rover.getxPosition(), rover.getyPosition());
 		rover.setxPosition(rover.getxPosition()-1);
 	}
 
 	private void moveToEast() {
+		System.out.println("Move to East");
 		unmarkRoverPosition(rover.getxPosition(), rover.getyPosition());
 		rover.setxPosition(rover.getxPosition()+1);
 	}
 
 	private void moveToSouth() {
+		System.out.println("Move to South");
 		unmarkRoverPosition(rover.getxPosition(), rover.getyPosition());
 		rover.setyPosition(rover.getyPosition()-1);
 	}
 
 	private void moveToNorth() {
+		System.out.println("Move to North");
 		unmarkRoverPosition(rover.getxPosition(), rover.getyPosition());
 		rover.setyPosition(rover.getyPosition()+1);
 	}

@@ -1,5 +1,7 @@
 package br.com.curiosity.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import br.com.curiosity.exception.OutOfGroundException;
-import br.com.curiosity.exception.UnknownInstructionException;
-import br.com.curiosity.model.moviment.MovimentFactory;
-import br.com.curiosity.model.moviment.RoverBehaviour;
+import br.com.curiosity.model.moviment.RoverDirectionBehaviour;
+import br.com.curiosity.model.moviment.RoverMovimentBehaviour;
+import br.com.curiosity.model.moviment.commands.Instruction;
+import br.com.curiosity.model.moviment.parser.InstructionReader;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -34,6 +36,8 @@ public class Rover {
 	@Column(name="instructions")
 	private String instructions;
 	
+	private int[][] ground;
+	
 	@ManyToOne
 	@JoinColumn(name="mission_id")
 	@JsonBackReference
@@ -50,6 +54,16 @@ public class Rover {
 		this.yPosition = yPosition;
 		this.direction = direction;
 		this.instructions = instructions;
+	}
+	
+	public Rover(Integer xPosition, Integer yPosition, Character direction,
+			String instructions, int[][] ground) {
+		super();
+		this.xPosition = xPosition;
+		this.yPosition = yPosition;
+		this.direction = direction;
+		this.instructions = instructions;
+		this.ground = ground;
 	}
 
 	public Integer getxPosition() {
@@ -91,39 +105,37 @@ public class Rover {
 	public Mission getMission() {
 		return mission;
 	}
-
-	public void executeMission(int[][] ground) throws OutOfGroundException, UnknownInstructionException {
-		
-		checkGroundLimits(ground);
-		char[] instructionsArray = readInstructions();
-		
-		executeInstructions(ground, instructionsArray);
+	
+	public void setGround(int[][] ground) {
+		this.ground = ground;
 	}
-
-
-	private void executeInstructions(int[][] ground,
-			char[] instructionsArray) throws UnknownInstructionException {
-		RoverBehaviour roverBehaviour;
-		for (int i = 0; i < instructionsArray.length; i++) {
-			roverBehaviour = MovimentFactory.getRoverBehaviour(instructionsArray[i],
-					this, ground);
-			roverBehaviour.executeCommand();
+		
+	public void executeInstruction()  {
+		InstructionReader instructionReader = new InstructionReader(instructions);
+		List<Instruction> instructions = instructionReader.getInstructions();
+		for (Instruction instruction : instructions) {
+			instruction.executeInstruction(this);
 		}
 	}
-
-
-	private void checkGroundLimits(int[][] ground) throws OutOfGroundException {
-		if (xPosition > ground.length || yPosition > ground[0].length)
-			throw new OutOfGroundException("Review your mission. OutOfGround."
-					+ toString());
+	
+	public void move(){
+		RoverMovimentBehaviour movimentBehaviour = new RoverMovimentBehaviour(this, ground);
+		movimentBehaviour.executeCommand();
+	}
+	
+	public void turnLeft() {
+		RoverDirectionBehaviour directionBehaviour = new  RoverDirectionBehaviour(this, 'L');
+		directionBehaviour.executeCommand();
 	}
 
-	private char[] readInstructions() {
-		return instructions.toCharArray();
+	public void turnRight() {
+		RoverDirectionBehaviour directionBehaviour = new  RoverDirectionBehaviour(this, 'R');
+		directionBehaviour.executeCommand();
 	}
-
+	
 	@Override
 	public String toString() {
 		return xPosition + " " + yPosition + " " + direction;
 	}
+
 }

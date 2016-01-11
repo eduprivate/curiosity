@@ -2,7 +2,7 @@ package br.com.curiosity.model.moviment;
 
 import br.com.curiosity.entity.Rover;
 
-public class RoverMovimentBehaviour implements RoverBehaviour {
+public class RoverMovimentBehaviour {
 
 	private Rover rover;
 	private int[][] ground;
@@ -17,7 +17,6 @@ public class RoverMovimentBehaviour implements RoverBehaviour {
 		this.ground = ground;
 	}
 
-	@Override
 	public void executeCommand() {
 		if(rover.getDirection() == NORTH && canMoveToNorth())
 			moveToNorth();

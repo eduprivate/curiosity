@@ -2,7 +2,7 @@ package br.com.curiosity.model.moviment;
 
 import br.com.curiosity.entity.Rover;
 
-public class RoverDirectionBehaviour implements RoverBehaviour {
+public class RoverDirectionBehaviour  {
 	
 	public static final char MOVE = 'M';
 	public static final char RIGHT = 'R';
@@ -19,8 +19,7 @@ public class RoverDirectionBehaviour implements RoverBehaviour {
 		this.rover = rover;
 		this.direction = direction;
 	}
-
-	@Override
+	
 	public void executeCommand() {
 		if ( direction == LEFT) {
 			switch (rover.getDirection()) {

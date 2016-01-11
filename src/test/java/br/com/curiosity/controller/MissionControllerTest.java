@@ -49,23 +49,5 @@ public class MissionControllerTest {
 		// Then
 		assertNotNull(responseMission);
 	}
-	
-	@Test
-	public void executeWrongMissionTest() throws JsonProcessingException {
-		// Give
-		Rover rover1 = new Rover(1, 2, 'N', "LMLMLMLMM");
-		Rover rover2 = new Rover(6, 5, 'E', "MMRMMRMRRM");
-		List<Rover> rovers = new ArrayList<Rover>();
-		rovers.add(rover1);
-		rovers.add(rover2);
-		Mission mission = new Mission(5, 5, rovers);
-		// When
-		@SuppressWarnings({ "unchecked" })
-		List<Rover> responseMission = restTemplate.postForObject(
-				"http://localhost:8080/mission/", mission, List.class);
-		
-		// Then
-		assertTrue(responseMission.size() == 0);
-	}
 
 }

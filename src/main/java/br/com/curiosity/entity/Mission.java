@@ -49,7 +49,8 @@ public class Mission {
 	public List<Rover> executeMission() throws OutOfGroundException, UnknownInstructionException{
 		int[][] ground = new int[xPosition][yPosition];
 		for (Rover rover : rovers) {
-			rover.executeMission(ground);
+			rover.setGround(ground);
+			rover.executeInstruction();
 			rover.setMission(this);
 		}
 		return rovers;

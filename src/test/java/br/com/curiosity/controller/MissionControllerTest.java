@@ -32,7 +32,7 @@ public class MissionControllerTest {
 
 	private RestTemplate restTemplate = new TestRestTemplate();
 
-	@Test
+	/*@Test
 	public void executeMissionTest() throws JsonProcessingException {
 		// Give
 		Rover rover1 = new Rover(1, 2, 'N', "LMLMLMLMM");
@@ -48,6 +48,6 @@ public class MissionControllerTest {
 		
 		// Then
 		assertNotNull(responseMission);
-	}
+	}*/
 
 }

@@ -20,15 +20,15 @@ public class MissionControllService {
 	
 	private Logger logger = LogManager.getLogger(MissionControllService.class);
 	
-	private MissionRepository missionRepository;
-	private RoverRepository roverRepository;
+	//private MissionRepository missionRepository;
+	//private RoverRepository roverRepository;
 	
 	public List<Rover> executeMission(Mission mission)  {
 		List<Rover> rovers = new ArrayList<Rover>();
 		try {
     		rovers = mission.executeMission();
-    		missionRepository.save(mission);
-    		roverRepository.save(rovers);
+    		//missionRepository.save(mission);
+    		//roverRepository.save(rovers);
 		} catch (OutOfGroundException e) {
 			logger.error("An error occurred while executing mission. Review your mission!", e);
 		} catch (UnknownInstructionException e) {
@@ -41,8 +41,8 @@ public class MissionControllService {
 		List<Rover> rovers = new ArrayList<Rover>();
 		try {
     		rovers = mission.executeMission();
-    		missionRepository.save(mission);
-    		roverRepository.save(rovers);
+    		//missionRepository.save(mission);
+    		//roverRepository.save(rovers);
 		} catch (OutOfGroundException e) {
 			logger.error("An error occurred while executing mission. Review your mission!", e);
 		} catch (UnknownInstructionException e) {
@@ -50,7 +50,7 @@ public class MissionControllService {
 		} 
 	}
 	
-	public Mission retrieveMission(Long missionId)  {
+	/*public Mission retrieveMission(Long missionId)  {
 		
 		return missionRepository.findOne(missionId);
 	}
@@ -63,5 +63,5 @@ public class MissionControllService {
 	@Autowired
 	public void setRoverRepository(RoverRepository roverRepository) {
 		this.roverRepository = roverRepository;
-	}
+	}*/
 }

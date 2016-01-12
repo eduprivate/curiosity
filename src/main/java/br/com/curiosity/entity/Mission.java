@@ -18,58 +18,31 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
 public class Mission {
 	
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private Ground ground;
 	
-	@Column(name="xPosition")
-	private Integer xPosition;
-	
-	@Column(name="yPosition")
-	private Integer yPosition;
-	
-	@OneToMany(mappedBy = "mission", targetEntity = Rover.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference
+	/*@OneToMany(mappedBy = "mission", targetEntity = Rover.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference*/
 	private List<Rover> rovers;
 	
 	public Mission() {
 	}
 	
-	@JsonCreator
-	public Mission(@JsonProperty("xPosition") Integer xPosition, @JsonProperty("yPosition") Integer yPosition, 
-			@JsonProperty("rovers") List<Rover> rovers) {
-		this.xPosition = xPosition;
-		this.yPosition = yPosition;
-		this.rovers = rovers;
-	}
-	
 	public List<Rover> executeMission() throws OutOfGroundException, UnknownInstructionException{
-		int[][] ground = new int[xPosition][yPosition];
 		for (Rover rover : rovers) {
 			rover.setGround(ground);
-			rover.executeInstruction();
-			rover.setMission(this);
+			rover.executeInstructions();
 		}
 		return rovers;
 	}
 	
-	public Long getId() {
-		return id;
+	public void setGround(Ground ground) {
+		this.ground = ground;
 	}
-
-	public Integer getxPosition() {
-		return xPosition;
-	}
-
-	public Integer getyPosition() {
-		return yPosition;
-	}
-
-	public List<Rover> getRovers() {
-		return rovers;
+	
+	public void setRovers(List<Rover> rovers) {
+		this.rovers = rovers;
 	}
 
 }

@@ -36,7 +36,8 @@ public class MissionController {
 	@RequestMapping(value="/mission/{missionId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE} )
     public @ResponseBody Mission retrieveMission(@PathVariable Long missionId) {
 		
-		return missionControllService.retrieveMission(missionId);		
+		//return missionControllService.retrieveMission(missionId);		
+		return null;
     }
 
 	

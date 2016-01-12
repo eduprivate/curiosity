@@ -2,17 +2,53 @@ package br.com.curiosity.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import br.com.curiosity.model.moviment.commands.Instruction;
-import br.com.curiosity.model.moviment.parser.InstructionReader;
+import br.com.curiosity.model.moviment.reader.InstructionReader;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
 public class Rover {
-
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	
+	@OneToOne
+	@JoinColumn(name="position_id")
 	private Position position;
+	
+	@Column(name="direction")
 	private Direction direction;
+	
+	@OneToOne
+	@JoinColumn(name="ground_id")
 	private Ground ground;
+	
+	@Column(name="instructions")
 	private String instructions;
+	
+	@ManyToOne
+	@JoinColumn(name="mission_id")
+	@JsonBackReference
+	private Mission mission;
 
 	public Rover() {
+	}
+	
+	public Rover(Direction direction, Position position,
+			String instruction) {
+		this.direction = direction;
+		this.position = position;
+		this.instructions = instruction;
 	}
 
 	public Rover(Ground ground, Direction direction, Position position,
@@ -85,5 +121,12 @@ public class Rover {
 		this.instructions = instructions;
 	}
 
+	public void setMission(Mission mission) {
+		this.mission = mission;
+	}
+	
+	public Mission getMission() {
+		return mission;
+	}
 
 }

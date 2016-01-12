@@ -1,10 +1,23 @@
 package br.com.curiosity.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
+@Entity
 public class Position {
-
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="position_id")
+	private Long id;
+	
+	@Column(name="xPosition")
     private int xPosition;
+	
+	@Column(name="yPosition")
     private int yPosition;
     
     public Position() {
@@ -66,5 +79,13 @@ public class Position {
 
 	public void setyPosition(int yPosition) {
 		this.yPosition = yPosition;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 }

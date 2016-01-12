@@ -1,4 +1,4 @@
-package br.com.curiosity.model.moviment.parser;
+package br.com.curiosity.model.moviment.reader;
 
 import java.util.ArrayList;
 import java.util.List;
